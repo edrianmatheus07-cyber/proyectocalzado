@@ -23,7 +23,7 @@ class AppModerna(ctk.CTk):
         self.title("detector de calzados")
         self.geometry("950x650")
         self.resizable(False, False)
-        self.configure(fg_color="#F8FAFC") # Fondo Pastel Claro
+        self.configure(fg_color="#EEF2FF") # Fondo Indigo Pastel Suave
 
         self.ruta_actual = ""
         self.ctk_image = None
@@ -80,7 +80,7 @@ class AppModerna(ctk.CTk):
         self.thumb_label.pack(expand=True, fill="both", padx=15, pady=(0, 15))
 
         # -- Panel de Resultados --
-        self.result_box = ctk.CTkFrame(self.main_frame, fg_color="#F1F5F9", corner_radius=20, height=140, border_width=1, border_color="#E2E8F0")
+        self.result_box = ctk.CTkFrame(self.main_frame, fg_color="#E0E7FF", corner_radius=20, height=140, border_width=1, border_color="#C7D2FE")
         self.result_box.pack(fill="x")
         self.result_box.pack_propagate(False)
 
@@ -112,7 +112,8 @@ class AppModerna(ctk.CTk):
                 return
                 
             # Encender cámara
-            self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) # 0 es la cámara web por defecto
+            # Forzamos CAP_MSMF para evitar el error "Camera index out of range" de obsensor
+            self.cap = cv2.VideoCapture(0, cv2.CAP_MSMF) 
             if not self.cap.isOpened():
                 self.thumb_label.configure(text="❌ Error: No se detectó cámara", text_color="red")
                 return

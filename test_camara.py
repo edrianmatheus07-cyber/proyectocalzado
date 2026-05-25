@@ -2,7 +2,8 @@ import cv2
 
 def probar_camara():
     # 0 suele ser la cámara integrada, 1 o 2 podrían ser cámaras USB
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    # Usamos cv2.CAP_MSMF para evitar conflictos con drivers de obsensor
+    cap = cv2.VideoCapture(0, cv2.CAP_MSMF)
 
     if not cap.isOpened():
         print("Error: No se pudo acceder a la cámara.")
