@@ -112,7 +112,7 @@ class AppModerna(ctk.CTk):
                 return
                 
             # Encender cámara
-            self.cap = cv2.VideoCapture(0) # 0 es la cámara web por defecto
+            self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) # 0 es la cámara web por defecto
             if not self.cap.isOpened():
                 self.thumb_label.configure(text="❌ Error: No se detectó cámara", text_color="red")
                 return

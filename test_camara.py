@@ -2,7 +2,7 @@ import cv2
 
 def probar_camara():
     # 0 suele ser la cámara integrada, 1 o 2 podrían ser cámaras USB
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
     if not cap.isOpened():
         print("Error: No se pudo acceder a la cámara.")
