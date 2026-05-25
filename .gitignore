@@ -1,15 +1,58 @@
+# --- Entornos Virtuales (¡Obligatorio ignorar!) ---
 venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Python e Inteligencia Artificial ---
 __pycache__/
 *.py[cod]
 *$py.class
-.venv/
-env/
+.Python
 build/
+develop-eggs/
 dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# --- IDEs y Editores de Código ---
 .vscode/
-*.onnx
-venv/
-venv/
-.venv/
-venv/
-.venv/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# --- Datasets e Imágenes Pesadas ---
+# Ignoramos la carpeta de las fotos para no saturar GitHub
+/data/
+/dataset/
+/Dataset/
+*.zip
+*.tar.gz
+*.rar
+
+# --- Modelos y Resguardos de Entrenamiento ---
+# Ignoramos pesos intermedios pesados
+*.h5
+*.pt
+*.pth
+*.ckpt
+/checkpoint/
