@@ -32,13 +32,13 @@
 
 ## 🧠 3. Arquitectura del Modelo y Entrenamiento
 * **Framework utilizado:** [TensorFlow/Keras o PyTorch]
-* **Descripción de la Red (CNN):** [Explicar brevemente cuántas capas convolucionales, de pooling y densas se utilizaron para extraer patrones del calzado como texturas y contornos].
+* **Descripción de la Red (CNN):** [El modelo utiliza Transfer Learning basado en MobileNetV2, una red convolucional profunda de 53 capas optimizada para tiempo real cuyos pesos se mantuvieron congelados para aprovechar su capacidad preentrenada de extraer texturas y bordes complejos. El procesamiento posterior consta de una capa de reescalado que adapta los píxeles al rango de [-1, 1], seguida de un Global Average Pooling 2D para reducir las dimensiones espaciales y evitar el sobreajuste. Finalmente, los datos pasan por una capa oculta de 128 neuronas con activación ReLU para interpretar las características, un Dropout al 50% como regularización y una capa de salida con activación Sigmoid encargada de la clasificación binaria final.].
 * **Hiperparámetros óptimos seleccionados:**
-    * *Función de pérdida (Loss):* [Ej. Binary Crossentropy si es Zapato/No Zapato, o Categorical Crossentropy si son varios tipos]
-    * *Optimizador:* [Ej. Adam / SGD]
-    * *Tasa de Aprendizaje (Learning Rate):* [Ej. 0.001]
-    * *Épocas (Epochs):* [Número]
-    * *Tamaño de lote (Batch Size):* [Número]
+    * *Función de pérdida (Loss):* [Se eligió binary_crossentropy por tratarse de un problema de clasificación binaria, ya que mide con precisión la diferencia entre la probabilidad predicha y la etiqueta real.]
+    * *Optimizador:* [Se seleccionó Adam por su capacidad de ajustar la tasa de aprendizaje de forma individual para cada parámetro, asegurando una convergencia más rápida y estable.]
+    * *Tasa de Aprendizaje (Learning Rate):* [Se fijó en 0.001 para permitir que las nuevas capas densas aprendan de manera controlada sin alterar el conocimiento previo heredado de MobileNetV2.]
+    * *Épocas (Epochs):* [Se establecieron 10 épocas porque las pruebas demostraron que es el tiempo justo para que la pérdida se estabilice en la validación sin caer en sobreentrenamiento.]
+    * *Tamaño de lote (Batch Size):* [Se definió en 32 para garantizar un equilibrio óptimo entre la estabilidad del gradiente y un uso eficiente de la memoria RAM/GPU.]
 
 ### 💡 Justificación Crítica (Control de Autoría)
 
@@ -68,7 +68,7 @@ PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ ¨NO ES UN CALZADO¨ USANDO CUSTO
 
 ## ⚙️ 5. Especificación de Exportación ONNX
 El modelo se ha homologado bajo los estándares requeridos por la interfaz centralizada:
-* **Nombre del archivo:** `model/nombre_equipo.onnx`
+* **Nombre del archivo:** `modelo_calzados_v1a.onnx`
 * **Tensor de Entrada (Input Shape):** `[1, 224, 224, 3]` (Tipo: `float32`)
 * **Tensor de Salida (Output Shape):** `[1, 1]` (Tipo: `float32`)
 * **Función de activación final:** Sigmoide (Rango de salida de 0.0 a 1.0 para conversión a porcentaje de confianza).
