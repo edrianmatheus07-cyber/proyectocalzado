@@ -112,10 +112,21 @@ class AppModerna(ctk.CTk):
                 return
                 
             # Encender cámara
-            # Forzamos CAP_MSMF para evitar el error "Camera index out of range" de obsensor
-            self.cap = cv2.VideoCapture(0, cv2.CAP_MSMF) 
-            if not self.cap.isOpened():
-                self.thumb_label.configure(text="❌ Error: No se detectó cámara", text_color="red")
+            # Escaneamos del índice 0 al 4 para encontrar Iriun Webcam
+            encontrada = False
+            for i in range(5):
+                self.cap = cv2.VideoCapture(i, cv2.CAP_DSHOW)
+                if self.cap.isOpened():
+                    encontrada = True
+                    print(f"✅ Cámara detectada en el índice: {i}")
+                    break
+
+            if not encontrada:
+                self.thumb_label.configure(
+                    text="❌ Error: No se detectó ninguna cámara.\n"
+                         "Asegúrate de que Iriun Webcam esté abierto en PC y Celular.", 
+                    text_color="red"
+                )
                 return
                 
             self.camara_activa = True

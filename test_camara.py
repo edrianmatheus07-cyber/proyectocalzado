@@ -1,12 +1,18 @@
 import cv2
 
 def probar_camara():
-    # 0 suele ser la cámara integrada, 1 o 2 podrían ser cámaras USB
-    # Usamos cv2.CAP_MSMF para evitar conflictos con drivers de obsensor
-    cap = cv2.VideoCapture(0, cv2.CAP_MSMF)
+    # Buscaremos en los primeros 5 índices disponibles
+    cap = None
+    for i in range(5):
+        print(f"Probando cámara en índice {i}...")
+        cap = cv2.VideoCapture(i, cv2.CAP_DSHOW)
+        if cap.isOpened():
+            print(f"¡Éxito! Cámara encontrada en el índice {i}")
+            break
+        cap.release()
 
-    if not cap.isOpened():
-        print("Error: No se pudo acceder a la cámara.")
+    if cap is None or not cap.isOpened():
+        print("Error: No se detectó ninguna cámara (Iriun, integrada o USB).")
         return
 
     print("Cámara abierta. Si no ves la ventana, busca un icono de Python en la barra de tareas. Presiona 'q' para salir.")
