@@ -90,7 +90,7 @@ class AppModerna(ctk.CTk):
         text_frame.pack(fill="x", padx=20, pady=(15, 5))
         
         ctk.CTkLabel(text_frame, text="ESTADO DE INFERENCIA", font=("Segoe UI", 11, "bold"), text_color="#94A3B8").pack(side="left")
-        self.lbl_probabilidad = ctk.CTkLabel(text_frame, text="Confianza: --%", font=("Segoe UI", 14, "bold"), text_color="#64748B")
+        self.lbl_probabilidad = ctk.CTkLabel(text_frame, text="CONFIRMADO: --%", font=("Segoe UI", 14, "bold"), text_color="#64748B")
         self.lbl_probabilidad.pack(side="right")
 
         self.progress_bar = ctk.CTkProgressBar(self.result_box, height=18, corner_radius=9, 
@@ -209,20 +209,19 @@ class AppModerna(ctk.CTk):
             self.lbl_probabilidad.configure(text="ERROR EN ARCHIVO", text_color="#EF4444")
             return
 
-        # Ajustamos colores y animación
+        # Ajustamos colores y textos para el modo binario
         color_progreso = "#34D399" if es_calzado else "#FB7185"
-        texto_final = "CALZADO" if es_calzado else "OTRO / EXTERNO"
+        texto_final = "CALZADO" if es_calzado else "NO ES UN CALZADO"
         
         self.progress_bar.configure(progress_color=color_progreso)
         self.lbl_resultado_final.configure(text=texto_final, text_color=color_progreso)
         
-        target_value = confianza / 100.0 if es_calzado else (100.0 - confianza) / 100.0
-        porcentaje_mostrar = confianza if es_calzado else (100.0 - confianza)
-        self.animar_barra(target_value, 0.0, porcentaje_mostrar, color_progreso)
+        target_value = confianza / 100.0
+        self.animar_barra(target_value, 0.0, confianza, color_progreso)
 
     def resetear_ui(self):
         self.progress_bar.set(0)
-        self.lbl_probabilidad.configure(text="Confianza: --%", text_color="#64748B")
+        self.lbl_probabilidad.configure(text="CONFIRMADO: --%", text_color="#64748B")
         self.lbl_resultado_final.configure(text="")
 
     def animar_barra(self, target, current, porcentaje_final, color):
@@ -232,11 +231,11 @@ class AppModerna(ctk.CTk):
             if current > target:
                 current = target
             self.progress_bar.set(current)
-            self.lbl_probabilidad.configure(text=f"Confianza: {current * 100:.1f}%", text_color="#475569")
+            self.lbl_probabilidad.configure(text=f"CONFIRMADO: {current * 100:.1f}%", text_color="#475569")
             self.after(20, self.animar_barra, target, current, porcentaje_final, color)
         else:
             self.progress_bar.set(target)
-            self.lbl_probabilidad.configure(text=f"Confianza: {porcentaje_final:.1f}%", text_color=color)
+            self.lbl_probabilidad.configure(text=f"CONFIRMADO: {porcentaje_final:.1f}%", text_color=color)
 
     def cerrar_aplicacion(self):
         if self.camara_activa and self.cap:

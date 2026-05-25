@@ -51,23 +51,21 @@ def evaluar_foto(ruta_imagen):
     score = resultado[0][0][0] # Extraemos el número final
     
     # ==========================================
-    # LÓGICA DE DECISIÓN
+    # LÓGICA DE DECISIÓN (Binaria)
     # ==========================================
-    # Keras asignó 0 a Calzados y 1 a No_Calzados por orden alfabético.
-    
-    print("-" * 50)
     if score < 0.5: 
-        # Si está más cerca de 0
+        # Por orden alfabético, 'calzado' suele ser 0
         confianza = (1.0 - score) * 100
         es_calzado = True
-        print(f"✅ ¡ES UN CALZADO!")
-        print(f"📊 Nivel de certeza: {confianza:.2f}%")
+        res_texto = "CALZADO"
     else:
-        # Si está más cerca de 1
-        confianza = score * 100
+        confianza = 0.0  # Forzamos 0% de confianza si no es calzado
         es_calzado = False
-        print(f"❌ NO ES UN CALZADO")
-        print(f"📊 Nivel de certeza: {confianza:.2f}%")
+        res_texto = "NO ES UN CALZADO"
+    
+    print("-" * 50)
+    print(f"🔍 Resultado: {res_texto}")
+    print(f"📊 CONFIRMADO: {confianza:.2f}%")
     print("-" * 50)
     
     return es_calzado, confianza
