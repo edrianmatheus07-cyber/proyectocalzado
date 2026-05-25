@@ -20,7 +20,7 @@ class AppModerna(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("detector de calzados")
+        self.title("Detector de Calzado")
         self.geometry("950x650")
         self.resizable(False, False)
         self.configure(fg_color="#EEF2FF") # Fondo Indigo Pastel Suave
@@ -49,23 +49,27 @@ class AppModerna(ctk.CTk):
         header_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
         header_frame.pack(fill="x", pady=(0, 20))
 
-        titulo = ctk.CTkLabel(header_frame, text="detector de calzados", 
+        titulo = ctk.CTkLabel(header_frame, text="Detector de Calzado", 
                               font=("Segoe UI", 24, "bold"), text_color="#6366F1")
         titulo.pack(side="left")
 
-        self.btn_analizar = ctk.CTkButton(header_frame, text="🧠 Analizar", font=("Segoe UI", 14, "bold"),
-                                          fg_color="#A78BFA", hover_color="#8B5CF6", height=40, width=120, command=self.evaluar)
+        # El botón Analizar ahora es el principal (Teal) y empieza deshabilitado
+        self.btn_analizar = ctk.CTkButton(header_frame, text="🧠 Analizar", font=("Segoe UI", 14, "bold"), 
+                                          state="disabled",
+                                          fg_color="#5EEAD4", text_color="#0F766E", hover_color="#2DD4BF", 
+                                          height=40, width=120, command=self.evaluar)
         self.btn_analizar.pack(side="right", padx=(10, 0))
 
-        btn_examinar = ctk.CTkButton(header_frame, text="📁 Archivos", font=("Segoe UI", 14, "bold"),
-                                     fg_color="transparent", text_color="#64748B", hover_color="#F1F5F9", 
-                                     border_width=1, border_color="#CBD5E1", height=40, width=100, command=self.seleccionar_archivo)
-        btn_examinar.pack(side="right", padx=(10, 0))
+        self.btn_examinar = ctk.CTkButton(header_frame, text="📁 Archivos", font=("Segoe UI", 14, "bold"),
+                                          fg_color="transparent", text_color="#6366F1", hover_color="#E0E7FF", 
+                                          border_width=2, border_color="#6366F1", height=40, width=110, command=self.seleccionar_archivo)
+        self.btn_examinar.pack(side="right", padx=(10, 0))
         
-        # NUEVO BOTÓN DE CÁMARA
+        # Botón Cámara con estilo basado en el color primario Índigo
         self.btn_camara = ctk.CTkButton(header_frame, text="📷 Cámara", font=("Segoe UI", 14, "bold"),
-                                     fg_color="#5EEAD4", text_color="#0F766E", hover_color="#2DD4BF", 
-                                     height=40, width=100, command=self.toggle_camara)
+                                     fg_color="transparent", text_color="#6366F1", hover_color="#E0E7FF", 
+                                     border_width=2, border_color="#6366F1",
+                                     height=40, width=110, command=self.toggle_camara)
         self.btn_camara.pack(side="right")
 
         # -- Área de la Imagen Cargada --
@@ -73,10 +77,8 @@ class AppModerna(ctk.CTk):
         preview_container.pack(fill="both", expand=True, pady=(0, 20))
         preview_container.pack_propagate(False)
 
-        self.lbl_estado_vista = ctk.CTkLabel(preview_container, text="VISUALIZADOR", font=("Segoe UI", 10, "bold"), text_color="#94A3B8")
-        self.lbl_estado_vista.pack(anchor="w", padx=15, pady=(10, 0))
-
-        self.thumb_label = ctk.CTkLabel(preview_container, text="Esperando entrada de imagen...", font=("Segoe UI", 13), text_color="#64748B")
+        # Se eliminó la etiqueta "VISUALIZADOR" y se ajustó el thumb_label
+        self.thumb_label = ctk.CTkLabel(preview_container, text="Seleccione una fuente para comenzar", font=("Segoe UI", 13), text_color="#94A3B8")
         self.thumb_label.pack(expand=True, fill="both", padx=15, pady=(0, 15))
 
         # -- Panel de Resultados --
@@ -87,8 +89,8 @@ class AppModerna(ctk.CTk):
         text_frame = ctk.CTkFrame(self.result_box, fg_color="transparent")
         text_frame.pack(fill="x", padx=20, pady=(15, 5))
         
-        ctk.CTkLabel(text_frame, text="INFERENCIA DEL MODELO", font=("Segoe UI", 11, "bold"), text_color="#94A3B8").pack(side="left")
-        self.lbl_probabilidad = ctk.CTkLabel(text_frame, text="CONFIANZA: --%", font=("Segoe UI", 14, "bold"), text_color="#64748B")
+        ctk.CTkLabel(text_frame, text="ESTADO DE INFERENCIA", font=("Segoe UI", 11, "bold"), text_color="#94A3B8").pack(side="left")
+        self.lbl_probabilidad = ctk.CTkLabel(text_frame, text="Confianza: --%", font=("Segoe UI", 14, "bold"), text_color="#64748B")
         self.lbl_probabilidad.pack(side="right")
 
         self.progress_bar = ctk.CTkProgressBar(self.result_box, height=18, corner_radius=9, 
@@ -99,7 +101,7 @@ class AppModerna(ctk.CTk):
         labels_frame = ctk.CTkFrame(self.result_box, fg_color="transparent")
         labels_frame.pack(fill="x", padx=25)
         
-        ctk.CTkLabel(labels_frame, text="OBJETO EXTERNO", font=("Segoe UI", 10, "bold"), text_color="#475569").pack(side="left")
+        ctk.CTkLabel(labels_frame, text="Clase Detectada:", font=("Segoe UI", 10, "bold"), text_color="#475569").pack(side="left")
         self.lbl_resultado_final = ctk.CTkLabel(labels_frame, text="", font=("Segoe UI", 16, "bold"), text_color="#6366F1")
         self.lbl_resultado_final.pack(side="right")
         self.lbl_resultado_final.configure(text="")
@@ -130,8 +132,8 @@ class AppModerna(ctk.CTk):
                 return
                 
             self.camara_activa = True
-            self.btn_camara.configure(text="🛑 Detener", fg_color="#EF4444", hover_color="#DC2626")
-            self.lbl_estado_vista.configure(text="🔴 CÁMARA ACTIVA")
+            self.btn_camara.configure(text="🛑 Detener", fg_color="#EF4444", hover_color="#DC2626", text_color="white")
+            self.btn_analizar.configure(state="normal")
             self.actualizar_frame_camara()
         else:
             # Apagar cámara
@@ -141,12 +143,11 @@ class AppModerna(ctk.CTk):
         if self.camara_activa and self.cap.isOpened():
             ret, frame = self.cap.read()
             if ret:
-                # OpenCV usa BGR, Python usa RGB. Hay que convertirlo.
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 self.frame_actual = frame_rgb # Lo guardamos por si le dan al botón evaluar
                 
                 img = Image.fromarray(frame_rgb)
-                img.thumbnail((600, 350), Image.Resampling.LANCZOS)
+                img.thumbnail((800, 450), Image.Resampling.LANCZOS)
                 
                 self.ctk_image = ctk.CTkImage(light_image=img, dark_image=img, size=img.size)
                 self.thumb_label.configure(image=self.ctk_image, text="")
@@ -158,8 +159,9 @@ class AppModerna(ctk.CTk):
         self.camara_activa = False
         if self.cap:
             self.cap.release()
-        self.btn_camara.configure(text="📷 Cámara", fg_color="#5EEAD4", text_color="#0F766E", hover_color="#2DD4BF")
-        self.lbl_estado_vista.configure(text="Vista Previa")
+        self.btn_camara.configure(text="📷 Cámara", fg_color="transparent", text_color="#6366F1", hover_color="#E0E7FF", 
+                                 border_width=2, border_color="#6366F1")
+        self.btn_analizar.configure(state="disabled")
         self.thumb_label.configure(image="", text="Cámara apagada. Sube una foto o reactiva la cámara.")
         self.ruta_actual = ""
 
@@ -174,9 +176,10 @@ class AppModerna(ctk.CTk):
         if ruta:
             self.ruta_actual = ruta
             img = Image.open(ruta)
-            img.thumbnail((600, 350), Image.Resampling.LANCZOS)
+            img.thumbnail((800, 450), Image.Resampling.LANCZOS)
             self.ctk_image = ctk.CTkImage(light_image=img, dark_image=img, size=img.size)
             self.thumb_label.configure(image=self.ctk_image, text="")
+            self.btn_analizar.configure(state="normal")
             self.resetear_ui()
 
     def evaluar(self):
@@ -208,7 +211,7 @@ class AppModerna(ctk.CTk):
 
         # Ajustamos colores y animación
         color_progreso = "#34D399" if es_calzado else "#FB7185"
-        texto_final = "RESULTADO: CALZADO" if es_calzado else "RESULTADO: OTRO"
+        texto_final = "CALZADO" if es_calzado else "OTRO / EXTERNO"
         
         self.progress_bar.configure(progress_color=color_progreso)
         self.lbl_resultado_final.configure(text=texto_final, text_color=color_progreso)
@@ -219,7 +222,7 @@ class AppModerna(ctk.CTk):
 
     def resetear_ui(self):
         self.progress_bar.set(0)
-        self.lbl_probabilidad.configure(text="CONFIANZA: --%", text_color="#64748B")
+        self.lbl_probabilidad.configure(text="Confianza: --%", text_color="#64748B")
         self.lbl_resultado_final.configure(text="")
 
     def animar_barra(self, target, current, porcentaje_final, color):
@@ -229,11 +232,11 @@ class AppModerna(ctk.CTk):
             if current > target:
                 current = target
             self.progress_bar.set(current)
-            self.lbl_probabilidad.configure(text=f"CONFIANZA: {current * 100:.1f}%", text_color="#475569")
+            self.lbl_probabilidad.configure(text=f"Confianza: {current * 100:.1f}%", text_color="#475569")
             self.after(20, self.animar_barra, target, current, porcentaje_final, color)
         else:
             self.progress_bar.set(target)
-            self.lbl_probabilidad.configure(text=f"CONFIRMADO: {porcentaje_final:.1f}%", text_color=color)
+            self.lbl_probabilidad.configure(text=f"Confianza: {porcentaje_final:.1f}%", text_color=color)
 
     def cerrar_aplicacion(self):
         if self.camara_activa and self.cap:
