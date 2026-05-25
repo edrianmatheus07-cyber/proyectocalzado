@@ -1,0 +1,6 @@
+tensorflow
+tf2onnx
+onnxruntime
+Pillow
+numpy
+customtkinter
