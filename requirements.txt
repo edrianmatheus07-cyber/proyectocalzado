@@ -4,3 +4,4 @@ onnxruntime
 Pillow
 numpy
 customtkinter
+opencv-python
