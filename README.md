@@ -5,10 +5,10 @@
 ---
 
 ## 👥 Integrantes y Roles
-* **Integrante 1:** [Edrian Matheus] - [29.661.577] - *Rol: Ingeniero de Datos (Dataset y Preprocesamiento)*
-* **Integrante 2:** [José Márquez] - [30.942.494] - *Rol: Ingeniero de Despliegue (Exportación ONNX y Pruebas)*
-* **Integrante 3:** [Matgreyd Duran] - [31.288.154] - *Rol: Arquitecto de IA (Modelado y Entrenamiento)*
-* **Integrante 4:** [Ashley Aguilar] - [28.052.136] - *Rol: Arquitecto de IA (Modelado y Entrenamiento)*
+* **Integrante 1:** [Edrian Matheus] - [29.661.577] - *Rol: Arquitecto de IA (Modelado y Entrenamiento)*
+* **Integrante 2:** [José Márquez] - [30.942.494] - *Rol: Arquitecto de IA (Modelado y Entrenamiento)*
+* **Integrante 3:** [Matgreyd Duran] - [31.288.154] - *Rol: Ingeniero de Datos (Dataset y Preprocesamiento)*
+* **Integrante 4:** [Ashley Aguilar] - [28.052.136] - *Rol: Ingeniero de Despliegue (Exportación ONNX y Pruebas)*
 
 ---
 
