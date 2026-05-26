@@ -293,7 +293,7 @@ class AppModerna(ctk.CTk):
         ctk.CTkLabel(
             side, text="v1.0  ·  IUJO 2026",
             font=T.FONT_MICRO, text_color=T.TEXT_DIM,
-        ).pack(side="bottom", pady=20)
+        ).pack(side="bottom", pady=20)  # footer discreto
 
     def _build_main(self):
         main = ctk.CTkFrame(self, fg_color="transparent")
@@ -354,16 +354,16 @@ class AppModerna(ctk.CTk):
 
         ctk.CTkLabel(
             self.empty_state, text="◎",
-            font=("Segoe UI", 48), text_color=T.BORDER_LIGHT,
+            font=("Segoe UI", 48), text_color=T.TEXT_DIM,
         ).pack()
         ctk.CTkLabel(
             self.empty_state, text="Sin señal de video",
-            font=T.FONT_H2, text_color=T.TEXT_MUTED,
+            font=T.FONT_H2, text_color=T.TEXT_HEADING,
         ).pack(pady=(8, 4))
         ctk.CTkLabel(
             self.empty_state,
             text="Inicia el escaneo en vivo o carga una imagen",
-            font=T.FONT_CAPTION, text_color=T.TEXT_DIM,
+            font=T.FONT_CAPTION, text_color=T.TEXT_BODY,
         ).pack()
 
         self.thumb_label = ctk.CTkLabel(self.preview_outer, text="", fg_color="transparent")
@@ -378,11 +378,11 @@ class AppModerna(ctk.CTk):
 
         ctk.CTkLabel(
             row_lbl, text="Ventana de análisis",
-            font=T.FONT_CAPTION, text_color=T.TEXT_MUTED,
+            font=T.FONT_CAPTION, text_color=T.TEXT_LABEL,
         ).pack(side="left")
         self.lbl_timer = ctk.CTkLabel(
             row_lbl, text=f"0.0 / {SEGUNDOS_ANALISIS:.0f}s",
-            font=T.FONT_CAPTION, text_color=T.GLOW,
+            font=("Segoe UI", 11, "bold"), text_color=T.TEXT_ACCENT,
         )
         self.lbl_timer.pack(side="right")
 
@@ -399,7 +399,7 @@ class AppModerna(ctk.CTk):
         self.lbl_banner = ctk.CTkLabel(
             self.banner,
             text="Selecciona una fuente de entrada para comenzar el análisis.",
-            font=T.FONT_CAPTION, text_color=T.TEXT_MUTED,
+            font=T.FONT_CAPTION, text_color=T.TEXT_BODY,
             wraplength=620, justify="left",
         )
         self.lbl_banner.pack(anchor="w", padx=16, pady=12)
@@ -418,12 +418,12 @@ class AppModerna(ctk.CTk):
 
         ctk.CTkLabel(
             self.card_conf, text="NIVEL DE CONFIANZA",
-            font=T.FONT_MICRO, text_color=T.TEXT_DIM,
+            font=T.FONT_MICRO, text_color=T.TEXT_LABEL,
         ).pack(anchor="w", padx=18, pady=(16, 0))
 
         self.lbl_conf_grande = ctk.CTkLabel(
             self.card_conf, text="—",
-            font=T.FONT_METRIC, text_color=T.TEXT,
+            font=T.FONT_METRIC, text_color=T.TEXT_HEADING,
         )
         self.lbl_conf_grande.pack(anchor="w", padx=18)
 
@@ -440,19 +440,19 @@ class AppModerna(ctk.CTk):
 
         ctk.CTkLabel(
             self.card_class, text="CLASIFICACIÓN",
-            font=T.FONT_MICRO, text_color=T.TEXT_DIM,
+            font=T.FONT_MICRO, text_color=T.TEXT_LABEL,
         ).pack(anchor="w", padx=18, pady=(14, 0))
 
         self.lbl_resultado_final = ctk.CTkLabel(
             self.card_class, text="—",
-            font=T.FONT_H1, text_color=T.TEXT_MUTED,
+            font=T.FONT_H1, text_color=T.TEXT_HEADING,
             wraplength=220, justify="left",
         )
         self.lbl_resultado_final.pack(anchor="w", padx=18, pady=(4, 4))
 
         self.lbl_probabilidad = ctk.CTkLabel(
             self.card_class, text="Esperando análisis",
-            font=T.FONT_CAPTION, text_color=T.TEXT_DIM,
+            font=T.FONT_CAPTION, text_color=T.TEXT_BODY,
         )
         self.lbl_probabilidad.pack(anchor="w", padx=18, pady=(0, 16))
 
@@ -462,8 +462,8 @@ class AppModerna(ctk.CTk):
             row.pack(fill="x", pady=3)
             inner = ctk.CTkFrame(row, fg_color="transparent")
             inner.pack(fill="x", padx=14, pady=10)
-            ctk.CTkLabel(inner, text=titulo, font=T.FONT_MICRO, text_color=T.TEXT_DIM).pack(side="left")
-            lbl = ctk.CTkLabel(inner, text="—", font=T.FONT_CAPTION, text_color=T.TEXT)
+            ctk.CTkLabel(inner, text=titulo, font=T.FONT_MICRO, text_color=T.TEXT_LABEL).pack(side="left")
+            lbl = ctk.CTkLabel(inner, text="—", font=("Segoe UI", 11, "bold"), text_color=T.TEXT_HEADING)
             lbl.pack(side="right")
             setattr(self, attr, lbl)
 
@@ -483,13 +483,13 @@ class AppModerna(ctk.CTk):
 
         ctk.CTkLabel(
             strip_inner, text="Estado del sistema",
-            font=T.FONT_MICRO, text_color=T.TEXT_DIM,
+            font=T.FONT_MICRO, text_color=T.TEXT_LABEL,
         ).pack(side="left")
 
         self.lbl_strip = ctk.CTkLabel(
             strip_inner,
             text="Listo para detectar calzado",
-            font=T.FONT_BODY, text_color=T.TEXT_MUTED,
+            font=T.FONT_BODY, text_color=T.TEXT_BODY,
         )
         self.lbl_strip.pack(side="right")
 
@@ -497,12 +497,12 @@ class AppModerna(ctk.CTk):
     #  UI HELPERS
     # ══════════════════════════════════════════════════════════════════════
 
-    def _set_banner(self, texto: str, bg=T.SURFACE_2, fg=T.TEXT_MUTED):
+    def _set_banner(self, texto: str, bg=T.SURFACE_2, fg=T.TEXT_BODY):
         self.banner.configure(fg_color=bg, border_color=T.BORDER)
         self.lbl_banner.configure(text=texto, text_color=fg)
         self.lbl_strip.configure(text=texto[:80], text_color=fg)
 
-    def _set_live_badge(self, texto: str, bg=T.SURFACE_2, fg=T.TEXT_MUTED):
+    def _set_live_badge(self, texto: str, bg=T.SURFACE_2, fg=T.TEXT_HEADING):
         self.live_badge.configure(text=texto, fg_color=bg, text_color=fg)
 
     def _set_badge_estado(self, texto: str, fg=T.SUCCESS):
@@ -521,9 +521,9 @@ class AppModerna(ctk.CTk):
         self.progress_bar.set(0)
         self.barra_escaneo.set(0)
         self.lbl_timer.configure(text=f"0.0 / {SEGUNDOS_ANALISIS:.0f}s")
-        self.lbl_conf_grande.configure(text="—", text_color=T.TEXT_DIM)
-        self.lbl_probabilidad.configure(text="Esperando análisis", text_color=T.TEXT_DIM)
-        self.lbl_resultado_final.configure(text="—", text_color=T.TEXT_MUTED)
+        self.lbl_conf_grande.configure(text="—", text_color=T.TEXT_HEADING)
+        self.lbl_probabilidad.configure(text="Esperando análisis", text_color=T.TEXT_BODY)
+        self.lbl_resultado_final.configure(text="—", text_color=T.TEXT_HEADING)
         self.lbl_muestras.configure(text="0")
         self._set_borde_preview(T.BORDER)
         self.progress_bar.configure(progress_color=T.ACCENT_HOVER)
@@ -544,7 +544,7 @@ class AppModerna(ctk.CTk):
 
         prefijo = "Confirmado" if estable else "Analizando"
         self.lbl_resultado_final.configure(text=texto, text_color=color)
-        self.lbl_probabilidad.configure(text=sub, text_color=T.TEXT_MUTED)
+        self.lbl_probabilidad.configure(text=sub, text_color=T.TEXT_BODY)
         self.lbl_conf_grande.configure(text=f"{confianza:.0f}%", text_color=color)
         self.lbl_conf_grande.pack_configure()
         self.progress_bar.configure(progress_color=color)
@@ -557,7 +557,8 @@ class AppModerna(ctk.CTk):
         )
         self._set_live_badge(
             f"{'✓' if es_calzado else '✗'} {prefijo}",
-            bg=T.SURFACE_3, fg=color,
+            bg=T.SUCCESS_BG if es_calzado else T.DANGER_BG,
+            fg=color,
         )
 
     # ══════════════════════════════════════════════════════════════════════
@@ -596,7 +597,7 @@ class AppModerna(ctk.CTk):
         self.btn_analizar.configure(state="disabled", text_color=T.TEXT_DIM)
         self.lbl_modo.configure(text="Cámara en vivo")
         self._set_badge_estado("● En vivo", T.DANGER)
-        self._set_live_badge("● Escaneando", bg=T.ACCENT_SOFT, fg=T.GLOW)
+        self._set_live_badge("● Escaneando", bg=T.ACCENT_SOFT, fg=T.TEXT_ACCENT)
         self._set_banner(
             f"Cámara activa. Acerca el calzado — análisis en ventanas de {SEGUNDOS_ANALISIS:.0f}s.",
             bg=T.ACCENT_SOFT, fg=T.TIPS_TEXT,
@@ -707,10 +708,10 @@ class AppModerna(ctk.CTk):
         self.ctk_image = ctk.CTkImage(light_image=img, dark_image=img, size=img.size)
         self.thumb_label.configure(image=self.ctk_image, text="")
         self._mostrar_empty(False)
-        self.btn_analizar.configure(state="normal", text_color=T.TEXT)
+        self.btn_analizar.configure(state="normal", text_color=T.TEXT_HEADING)
         self.resetear_resultados()
         self.lbl_modo.configure(text="Imagen estática")
-        self._set_live_badge("Imagen cargada", bg=T.SURFACE_3, fg=T.GLOW)
+        self._set_live_badge("Imagen cargada", bg=T.SURFACE_3, fg=T.TEXT_ACCENT)
         self._set_banner(f"Archivo: {os.path.basename(ruta)}. Pulsa «Analizar imagen».")
 
     def evaluar_archivo(self):
@@ -719,7 +720,7 @@ class AppModerna(ctk.CTk):
             return
 
         self.btn_analizar.configure(state="disabled")
-        self._set_live_badge("Procesando…", bg=T.ACCENT_SOFT, fg=T.GLOW)
+        self._set_live_badge("Procesando…", bg=T.ACCENT_SOFT, fg=T.TEXT_ACCENT)
         self._set_badge_estado("● Analizando", T.WARNING)
         self.update()
 
