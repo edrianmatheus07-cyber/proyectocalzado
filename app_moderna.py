@@ -56,7 +56,8 @@ class AppModerna(ctk.CTk):
         # El botón Analizar ahora es el principal (Teal) y empieza deshabilitado
         self.btn_analizar = ctk.CTkButton(header_frame, text="🧠 Analizar", font=("Segoe UI", 14, "bold"), 
                                           state="disabled",
-                                          fg_color="#5EEAD4", text_color="#0F766E", hover_color="#2DD4BF", 
+                                          fg_color="#10B981", text_color="white", 
+                                          text_color_disabled="white", hover_color="#059669", 
                                           height=40, width=120, command=self.evaluar)
         self.btn_analizar.pack(side="right", padx=(10, 0))
 
