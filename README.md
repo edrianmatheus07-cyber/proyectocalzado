@@ -52,19 +52,19 @@ Este acierto técnico se reflejó directamente en el comportamiento de las gráf
 * **Precisión final (Accuracy) en la data de test:** [Ej. 91.5%]
 * **Pérdida final (Loss) en la data de test:** [Ej. 0.18]
 
-PRUEBA DE MODELO DE DETECTOR DE CALZADOS DESDE EL TERMINAL:
+*PRUEBA DE MODELO DE DETECTOR DE CALZADOS DESDE EL TERMINAL:
 <img width="1429" height="251" alt="Captura de pantalla 2026-05-25 162900" src="https://github.com/user-attachments/assets/5f0d0ad5-74c8-413c-9494-b2a39bf06532" />
 
-PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 1 ¨ES UN CALZADO¨ USANDO CUSTOMTKINTER:
+*PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 1 ¨ES UN CALZADO¨ USANDO CUSTOMTKINTER:
 <img width="948" height="673" alt="Captura de pantalla 2026-05-25 162800" src="https://github.com/user-attachments/assets/30af62d6-5275-4f04-8aee-99ed6724f2c6" />
 
-PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 1 ¨NO ES UN CALZADO¨ USANDO CUSTOMTKINTER:
+*PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 1 ¨NO ES UN CALZADO¨ USANDO CUSTOMTKINTER:
 <img width="945" height="675" alt="Captura de pantalla 2026-05-25 163458" src="https://github.com/user-attachments/assets/49af5a66-9313-4b46-8723-63fa4ccfc9a9" />
 
-PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 2 Y FINAL ¨ES UN CALZADO¨ USANDO CUSTOMTKINTER:
+*PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 2 Y FINAL ¨ES UN CALZADO¨ USANDO CUSTOMTKINTER:
 <img width="1172" height="801" alt="interfaz final" src="https://github.com/user-attachments/assets/e32de720-d76b-4561-b5c9-6098ba2a303f" />
 
-PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 2 Y FINAL ¨NO ES UN CALZADO¨ USANDO CUSTOMTKINTER:
+*PRUEBA DE MODELO DE DETECTOR DESDE LA INTERFAZ FASE 2 Y FINAL ¨NO ES UN CALZADO¨ USANDO CUSTOMTKINTER:
 <img width="1174" height="799" alt="interdaz final 2" src="https://github.com/user-attachments/assets/8e1364e3-f807-49e2-b062-de32ade3be58" />
 
 ---
