@@ -24,11 +24,11 @@ SEGUNDOS_ANALISIS = 4.0
 INTERVALO_VIDEO_MS = 33
 INTERVALO_INFERENCIA_MS = 180
 
-# ── Design system ─────────────────────────────────────────────────────────
+# ── Diseño del sistema ─────────────────────────────────────────────────────────
 class T:
     """Tokens de diseño (paleta y tipografía)."""
 
-    # Fondos pasteles
+    # Fondos - color - pasteles
     BG = "#FAF5FF"
     SURFACE = "#FFFFFF"
     SURFACE_2 = "#F5F3FF"
@@ -54,7 +54,7 @@ class T:
     TEXT_ACCENT = "#7C3AED"        # timer, badges, enlaces
     TIPS_TEXT = "#4C1D95"          # consejos en tarjeta
 
-    # Semánticos — fondos pastel + texto oscuro legible
+    # Semánticos — fondos color pastel + texto oscuro legible
     SUCCESS = "#047857"
     SUCCESS_BG = "#D1FAE5"
     SUCCESS_BORDER = "#6EE7B7"
