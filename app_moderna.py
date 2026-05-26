@@ -291,7 +291,7 @@ class AppModerna(ctk.CTk):
 
         # Footer sidebar
         ctk.CTkLabel(
-            side, text="v1.0  ·  IUJO 2026",
+            side, text="v1.1  ·  IUJO 2026",
             font=T.FONT_MICRO, text_color=T.TEXT_DIM,
         ).pack(side="bottom", pady=20)  # footer discreto
 
@@ -314,7 +314,7 @@ class AppModerna(ctk.CTk):
         )
         ctk.CTkLabel(
             left_tb,
-            text="Clasificación inteligente de calzado en tiempo real",
+            text="Detección y clasificación de calzado en tiempo real",
             font=T.FONT_CAPTION, text_color=T.TEXT_BODY,
         ).pack(anchor="w", pady=(2, 0))
 
@@ -323,7 +323,7 @@ class AppModerna(ctk.CTk):
 
         self.badge_modelo = _pill(right_tb, "ONNX Runtime", bg=T.ACCENT_SOFT, fg=T.TEXT_ACCENT)
         self.badge_modelo.pack(side="right", padx=(8, 0))
-        self.badge_estado = _pill(right_tb, "● Listo", bg=T.SUCCESS_BG, fg=T.SUCCESS)
+        self.badge_estado = _pill(right_tb, "● Sistema listo", bg=T.SUCCESS_BG, fg=T.SUCCESS)
         self.badge_estado.pack(side="right")
 
         # Contenido: preview + métricas
@@ -362,7 +362,7 @@ class AppModerna(ctk.CTk):
         ).pack(pady=(8, 4))
         ctk.CTkLabel(
             self.empty_state,
-            text="Inicia el escaneo en vivo o carga una imagen",
+            text="Activa la cámara o sube una imagen para comenzar",
             font=T.FONT_CAPTION, text_color=T.TEXT_BODY,
         ).pack()
 
@@ -682,7 +682,7 @@ class AppModerna(ctk.CTk):
             self.thumb_label.configure(image="", text="")
             self._mostrar_empty(True)
         self.lbl_modo.configure(text="Inactivo")
-        self._set_badge_estado("● Listo", T.SUCCESS)
+        self._set_badge_estado("● Sistema listo", T.SUCCESS)
         self._set_live_badge("En espera")
         self._set_banner("Selecciona una fuente de entrada para comenzar el análisis.")
 
