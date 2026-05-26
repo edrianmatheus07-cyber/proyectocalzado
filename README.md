@@ -52,9 +52,6 @@ Este acierto técnico se reflejó directamente en el comportamiento de las gráf
 * **Precisión final (Accuracy) en la data de test:** [Ej. 91.5%]
 * **Pérdida final (Loss) en la data de test:** [Ej. 0.18]
 
-*(Inserte aquí abajo la captura de pantalla de la gráfica de entrenamiento Accuracy/Loss de su modelo)*
-![Gráfica de Entrenamiento](src/grafica_rendimiento.png)
-
 PRUEBA DE MODELO DE DETECTOR DE CALZADOS DESDE EL TERMINAL:
 <img width="1429" height="251" alt="Captura de pantalla 2026-05-25 162900" src="https://github.com/user-attachments/assets/5f0d0ad5-74c8-413c-9494-b2a39bf06532" />
 
